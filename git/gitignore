@@ -45,3 +45,7 @@ Session.vim
 # SASS
 # ----------------------------------------------------------------------------------------------
 .sass-cache
+
+Xcode.simulator
+Xcode.device
+generate-ios-toolchain-xcode-project.sh

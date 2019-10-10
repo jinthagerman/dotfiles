@@ -11,6 +11,12 @@
   frag = magenta bold
   old = red
   new = green
+[color "icdiff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red
+  new = green
+[alias]
 [alias]
   # add
   a = add                           # add
@@ -44,6 +50,7 @@
   d = diff                          # diff unstaged changes
   dc = diff --cached                # diff staged changes
   last = diff HEAD^                 # diff last committed change
+  show = "!f() { git difftool $1^ $1; }; f" # diff of specific commit
 
   # log
   l = log --graph --date=short
@@ -89,6 +96,8 @@
   svnr = svn rebase
   svnd = svn dcommit
   svnl = svn log --oneline --show-commit
+
+  sub = !"git submodule update --recursive"
 [format]
   pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
 [mergetool]
@@ -125,3 +134,5 @@
   enabled = true
 [include]
   path = .gitconfig.user
+[url "git@github.com:"]
+  insteadOf = "https://github.com/"
