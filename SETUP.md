@@ -1,0 +1,11 @@
+- Change to Left side Dock
+- Turn off Show recent applications in Dock
+- Turn off Automatically hide and show menu bar in full screen
+- Remap caps lock to escape
+- Left corner to Mission Control 
+- Right corner to Desktop 
+- Reorganize Dock
+- Reorganize sidebar
+- Show Status bar in finder
+- Set Finder view options
+- Install Amphetamine, Harvest, Discord, Duet, Docker, EVO, Logitech GHUB, MeetingBar, Slack, SF Symbols, Postman, Steam
