@@ -9,3 +9,6 @@
 - Show Status bar in finder
 - Set Finder view options
 - Install Amphetamine, Harvest, Discord, Duet, Docker, EVO, Logitech GHUB, MeetingBar, Slack, SF Symbols, Postman, Steam
+- Install SF Mono
+- Set iTerm config to iCloud drive
+- 
