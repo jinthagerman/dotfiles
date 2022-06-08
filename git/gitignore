@@ -48,3 +48,4 @@ Session.vim
 
 Xcode.*/
 generate-ios-toolchain-xcode-project.sh
+clion-build/

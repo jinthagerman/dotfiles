@@ -8,3 +8,4 @@
 :verbose: true
 benchmark: false
 gem: "--no-document"
+gem: --no-document
