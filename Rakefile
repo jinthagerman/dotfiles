@@ -172,8 +172,15 @@ def install_homebrew
   puts "======================================================"
   puts "Installing Homebrew packages...There may be some warnings."
   puts "======================================================"
-  run %{brew install zsh ctags git hub tmux reattach-to-user-namespace the_silver_searcher ghi}
+  run %{brew install zsh ctags git hub tmux reattach-to-user-namespace the_silver_searcher ghi glow}
   run %{brew install macvim}
+  run %{brew install --cask ghostty}
+  puts
+  puts
+  puts "======================================================"
+  puts "Adding ghostty config"
+  puts "======================================================"
+  run %{ ln -nfs "$HOME/.yadr/ghostty/config" "$HOME/.config/ghostty/config" }
   puts
   puts
 end
