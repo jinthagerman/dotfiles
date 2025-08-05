@@ -44,9 +44,11 @@
 
 keybind = global:ctrl+tab=toggle_visibility
 copy-on-select = clipboard
+maximize = true
+font-family = SF Mono
 font-size = 14
 #theme = Subliminal
-theme = Teerb
+theme = Teerb-modified
 #theme = flexoki-dark
 #theme = Jellybeans
 #theme = kurokula
