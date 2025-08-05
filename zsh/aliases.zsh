@@ -212,6 +212,9 @@ alias dbmu='spring rake db:migrate:up'
 # Homebrew
 alias brewu='brew update && brew upgrade && brew cleanup && brew doctor'
 
+# Glow
+alias readme='glow -p README.md'
+
 flip() {
   echo;
   echo -en "( º_º）  ┬─┬   \r"; sleep .2;

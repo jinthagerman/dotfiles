@@ -5,3 +5,8 @@ for config_file ($HOME/.yadr/zsh/*.zsh) source $config_file
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /Users/jinbudelmann/.glow-completion.zsh ]] && . /Users/jinbudelmann/.glow-completion.zsh || true
+## [/Completion]
