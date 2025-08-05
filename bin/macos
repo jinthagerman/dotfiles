@@ -164,6 +164,9 @@ defaults write com.apple.dock no-glass -bool true
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
 
+# Set dock position to be on the left
+defaults write com.apple.dock orientation left
+
 # # Make Dock icons of hidden applications translucent
 # defaults write com.apple.dock showhidden -bool true
 
