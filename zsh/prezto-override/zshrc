@@ -1,3 +1,5 @@
+# Amazon Q pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 source $HOME/.zprezto/runcoms/zshrc
 
 for config_file ($HOME/.yadr/zsh/*.zsh) source $config_file
@@ -8,5 +10,13 @@ export NVM_DIR="$HOME/.nvm"
 
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall
+[[ -f /Users/jinbudelmann/.dart-cli-completion/zsh-config.zsh ]] && . /Users/jinbudelmann/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
 [[ -f /Users/jinbudelmann/.glow-completion.zsh ]] && . /Users/jinbudelmann/.glow-completion.zsh || true
 ## [/Completion]
+
+# Amazon Q post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"

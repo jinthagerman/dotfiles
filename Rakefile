@@ -311,9 +311,9 @@ def install_neovim_config
   puts "Installing Neovim (LazyVim with YADR-inspired features)..."
 
   nvim_config = "$HOME/.config/nvim"
-  
+
   # Backup existing config if it exists
-  if File.exists?(File.expand_path("~/.config/nvim")) || File.symlink?(File.expand_path("~/.config/nvim"))
+  if File.exist?(File.expand_path("~/.config/nvim")) || File.symlink?(File.expand_path("~/.config/nvim"))
     puts "Backing up existing Neovim config..."
     run %{ mv #{nvim_config} #{nvim_config}.backup }
   end
