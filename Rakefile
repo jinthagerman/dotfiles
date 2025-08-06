@@ -25,6 +25,8 @@ task :install => [:submodule_init, :submodules] do
     Rake::Task["install_vundle"].execute
   end
 
+  Rake::Task["install_neovim"].execute if want_to_install?('neovim configuration (LazyVim with YADR features)')
+
   Rake::Task["install_prezto"].execute
 
   install_fonts
@@ -39,6 +41,12 @@ end
 task :install_prezto do
   if want_to_install?('zsh enhancements & prezto')
     install_prezto
+  end
+end
+
+task :install_neovim do
+  if want_to_install?('neovim configuration (LazyVim with YADR features)')
+    install_neovim_config
   end
 end
 
@@ -296,6 +304,26 @@ def install_prezto
       run %{ chsh -s /bin/zsh }
     end
   end
+end
+
+def install_neovim_config
+  puts
+  puts "Installing Neovim (LazyVim with YADR-inspired features)..."
+
+  nvim_config = "$HOME/.config/nvim"
+  
+  # Backup existing config if it exists
+  if File.exists?(File.expand_path("~/.config/nvim")) || File.symlink?(File.expand_path("~/.config/nvim"))
+    puts "Backing up existing Neovim config..."
+    run %{ mv #{nvim_config} #{nvim_config}.backup }
+  end
+
+  # Create .config directory and symlink
+  run %{ mkdir -p "$HOME/.config" }
+  run %{ ln -nfs "$HOME/.yadr/neovim" #{nvim_config} }
+
+  puts
+  puts "✅ Neovim setup complete! Run 'nvim' to start."
 end
 
 def want_to_install? (section)
