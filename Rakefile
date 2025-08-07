@@ -181,7 +181,7 @@ def install_homebrew
   puts "Installing Homebrew packages...There may be some warnings."
   puts "======================================================"
   run %{brew install zsh ctags git hub tmux reattach-to-user-namespace the_silver_searcher ghi glow}
-  run %{brew install macvim}
+  run %{brew install macvim neovim}
   run %{brew install --cask ghostty}
   puts
   puts
