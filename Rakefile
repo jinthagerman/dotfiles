@@ -188,6 +188,7 @@ def install_homebrew
   puts "======================================================"
   puts "Adding ghostty config"
   puts "======================================================"
+  run %{ mkdir -p "$HOME/.config/ghostty" }
   run %{ ln -nfs "$HOME/.yadr/ghostty" "$HOME/.config/ghostty" }
   puts
   puts
