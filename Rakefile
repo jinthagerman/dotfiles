@@ -191,7 +191,7 @@ def install_extras
   puts "======================================================"
   puts "Installing Extra packages and apps"
   puts "======================================================"
-  run %{brew install neovim}
+  run %{brew install aria2 neovim}
   run %{brew install dockutil}
   run %{brew install xcodesorg/made/xcodes}
   run %{brew install --cask ghostty}
@@ -202,15 +202,26 @@ def install_extras
   puts "Adding ghostty config"
   puts "======================================================"
   run %{ mkdir -p "$HOME/.config/ghostty" }
-  run %{ ln -nfs "$HOME/.yadr/ghostty" "$HOME/.config/ghostty" }
+  run %{ ln -nfs "$HOME/.yadr/ghostty" "$HOME/.config/ghostty" }\
   puts
   puts
-  puts "======================================================"
-  puts "Installing Xcode"
-  puts "======================================================"
-  run %{ xcodes install --latest --experimental-unxip }
-  puts
-  puts
+
+
+  if ENV['XCODES_USERNAME'] && ENV['XCODES_PASSWORD']
+    puts "======================================================"
+    puts "Installing Xcode"
+    puts "======================================================"
+    run %{ XCODES_USERNAME=#{ENV['XCODES_USERNAME']} XCODES_PASSWORD=#{ENV['XCODES_PASSWORD']} xcodes install --latest --experimental-unxip }
+    puts
+    puts
+  else
+    puts "======================================================"
+    puts "Skipping Xcode installation (XCODES_USERNAME and XCODES_PASSWORD not provided)"
+    puts "======================================================"
+    puts
+  end
+
+
   puts "======================================================"
   puts "Installing Android Studio"
   puts "======================================================"
