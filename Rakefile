@@ -204,29 +204,6 @@ def install_extras
   run %{ mkdir -p "$HOME/.config/ghostty" }
   run %{ ln -nfs "$HOME/.yadr/ghostty" "$HOME/.config/ghostty" }\
   puts
-  puts
-
-
-  if ENV['XCODES_USERNAME'] && ENV['XCODES_PASSWORD']
-    puts "======================================================"
-    puts "Installing Xcode"
-    puts "======================================================"
-    run %{ XCODES_USERNAME=#{ENV['XCODES_USERNAME']} XCODES_PASSWORD=#{ENV['XCODES_PASSWORD']} xcodes install --latest --experimental-unxip }
-    puts
-    puts
-  else
-    puts "======================================================"
-    puts "Skipping Xcode installation (XCODES_USERNAME and XCODES_PASSWORD not provided)"
-    puts "======================================================"
-    puts
-  end
-
-
-  puts "======================================================"
-  puts "Installing Android Studio"
-  puts "======================================================"
-  run %{brew install --cask android-studio}
-  puts
 end
 
 def install_fonts
