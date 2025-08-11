@@ -208,7 +208,7 @@ def install_extras
   puts "======================================================"
   puts "Installing Xcode"
   puts "======================================================"
-  run %{ xcodes install --latest }
+  run %{ xcodes install --latest --experimental-unxip }
   puts
   puts
   puts "======================================================"
