@@ -29,6 +29,8 @@ task :install => [:submodule_init, :submodules] do
 
   Rake::Task["install_prezto"].execute
 
+  install_extras
+
   install_fonts
 
   install_term_theme if RUBY_PLATFORM.downcase.include?("darwin")
@@ -181,9 +183,19 @@ def install_homebrew
   puts "Installing Homebrew packages...There may be some warnings."
   puts "======================================================"
   run %{brew install zsh ctags git hub tmux reattach-to-user-namespace the_silver_searcher ghi glow}
+  run %{brew install macvim}
+  puts
+end
+
+def install_extras
+  puts "======================================================"
+  puts "Installing Extra packages and apps"
+  puts "======================================================"
+  run %{brew install neovim}
   run %{brew install dockutil}
-  run %{brew install macvim neovim}
+  run %{brew install xcodesorg/made/xcodes}
   run %{brew install --cask ghostty}
+  run %{brew install --cask google-chrome}
   puts
   puts
   puts "======================================================"
@@ -192,6 +204,17 @@ def install_homebrew
   run %{ mkdir -p "$HOME/.config/ghostty" }
   run %{ ln -nfs "$HOME/.yadr/ghostty" "$HOME/.config/ghostty" }
   puts
+  puts
+  puts "======================================================"
+  puts "Installing Xcode"
+  puts "======================================================"
+  run %{ xcodes install --latest }
+  puts
+  puts
+  puts "======================================================"
+  puts "Installing Android Studio"
+  puts "======================================================"
+  run %{brew install --cask android-studio}
   puts
 end
 
