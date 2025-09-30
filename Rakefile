@@ -201,8 +201,8 @@ def install_extras
   puts "======================================================"
   puts "Adding ghostty config"
   puts "======================================================"
-  run %{ mkdir -p "$HOME/.config/ghostty" }
-  run %{ ln -nfs "$HOME/.yadr/ghostty" "$HOME/.config/ghostty" }\
+  run %{ mkdir -p "$HOME/.config/" }
+  run %{ ln -nfs "$HOME/.yadr/ghostty" "$HOME/.config/" }
   puts
 end
 
