@@ -16,7 +16,7 @@ neovim/
 │   │   └── options.lua  # YADR-style vim options
 │   └── plugins/         # Custom plugin configurations
 │       ├── yadr-features.lua  # Plugins that replicate YADR functionality
-│       └── colorscheme.lua    # Custom Teerb theme + alternatives
+│       └── colorscheme.lua    # Custom Teerb theme
 └── README.md            # This file
 ```
 
@@ -45,15 +45,18 @@ Contains your YADR-inspired customizations that extend/override the starter conf
 
 ## Installation
 
-This is installed automatically when you run `rake install` and choose to install Neovim configuration.
+`~/.yadr/install.sh` symlinks this directory to `~/.config/nvim`.
 
 ## Usage
 
 - Start with `nvim`
 - Use `,t` for file finder (replaces CtrlP)
 - Use `,gg` for live grep (replaces ag.vim)
-- Use `<C-\>` to reveal file in tree (replaces NERDTree)
-- Switch colorschemes with `:colorscheme kanagawa` or `:colorscheme everforest`
+- Use `<C-\>` to reveal file in the explorer (replaces NERDTree)
+- Pickers use Snacks (LazyVim's default), not Telescope
+- `,gs` lists changed files (handy for reviewing what an agent touched)
+- `<leader>ac` toggles Claude Code (claudecode.nvim, enabled as a LazyVim extra in `lazyvim.json`)
+- Buffers auto-reload every second when files change on disk (e.g. agent edits), unless you have unsaved changes
 
 ## Customization
 

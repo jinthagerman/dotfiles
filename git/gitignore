@@ -49,3 +49,7 @@ Session.vim
 Xcode.*/
 generate-ios-toolchain-xcode-project.sh
 clion-build/
+
+# Claude Code personal files
+**/.claude/settings.local.json
+CLAUDE.local.md

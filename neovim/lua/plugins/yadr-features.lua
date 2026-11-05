@@ -45,22 +45,6 @@ return {
     opts = { use_default_keymaps = false },
   },
 
-  -- Tmux navigation (replaces vim-tmux-navigator)
-  {
-    "christoomey/vim-tmux-navigator",
-    cmd = {
-      "TmuxNavigateLeft",
-      "TmuxNavigateDown",
-      "TmuxNavigateUp",
-      "TmuxNavigateRight",
-    },
-    keys = {
-      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
-    },
-  },
 
   -- Color highlighting (replaces color_highlight)
   {
@@ -94,9 +78,4 @@ return {
     event = "VeryLazy",
   },
 
-  -- TODO: Add more plugins as you identify missing YADR functionality
-  -- Examples to consider:
-  -- - vim-abolish for smart search/replace
-  -- - gundo.vim for undo tree visualization  
-  -- - vim-unimpaired for bracket mappings
 }
