@@ -29,6 +29,7 @@ link vimify/inputrc                "$HOME/.inputrc"
 link vimify/editrc                 "$HOME/.editrc"
 link neovim                        "$HOME/.config/nvim"
 link ghostty                       "$HOME/.config/ghostty"
+link rex                           "$HOME/.config/rex"
 
 # Per-machine git identity (not tracked, so work and personal machines differ).
 # To change it later: rm ~/.gitconfig.user && ./install.sh

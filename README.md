@@ -25,6 +25,7 @@ To change it later: `rm ~/.gitconfig.user && ~/.yadr/install.sh`.
 | `git/gitconfig`, `git/gitignore` | `~/.gitconfig`, `~/.gitignore` | identity comes from `~/.gitconfig.user` |
 | `neovim/` | `~/.config/nvim` | LazyVim + Teerb theme + claudecode.nvim (`<leader>ac`) |
 | `ghostty/` | `~/.config/ghostty` | |
+| `rex/` | `~/.config/rex` | Rex multiplexer: agent actions + keys (below) |
 | `vimify/` | `~/.inputrc`, `~/.editrc` | vi mode for readline/libedit REPLs |
 
 Machine-local, untracked: `~/.zsh.after/*.zsh`, `~/.secrets` (sourced if present), `~/.gitconfig.user`.
@@ -46,3 +47,18 @@ wtrm                # remove the current worktree, cd back to the main checkout
 ```
 
 New branches push without `-u` (`push.autoSetupRemote`).
+
+## Rex agent actions
+
+Defined in `rex/init.lua`; also in the command palette under **Agents**.
+
+| Key | Action |
+| --- | --- |
+| `shift+cmd+c` | **Claude Here**: split right, start `claude` in the focused pane's directory |
+| `shift+cmd+t` | **New Agent Worktree Tab**: new tab in the same repo with `wt ` typed, ready for a branch name |
+| `shift+cmd+j` | **Jump to Waiting Agent**: cycle through panes whose agent is blocked on you, then ones that finished |
+| `shift+cmd+r` | **Review Changes**: split below with Neovim's changed-files picker |
+| `shift+cmd+f` | **Scratch Shell**: floating shell in the same directory |
+
+After editing: `rex config check && rex config reload`. Try an action from the
+file before reloading with `rex do rex/init.lua --action <name>`.
