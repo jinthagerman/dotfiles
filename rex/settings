@@ -1,0 +1,86 @@
+#!/usr/bin/python3 -I
+"""Save or load Rex's app settings (theme, fonts, sidebar, ...) to/from settings.json.
+
+Rex keeps UI settings in macOS preferences next to per-machine state (window
+frames, update checks, activity history), so the plist can't be symlinked.
+This copies just the settings.
+
+  rex/settings save    # preferences -> rex/settings.json
+  rex/settings load    # rex/settings.json -> preferences (quit Rex first)
+"""
+import json, os, plistlib, subprocess, sys, tempfile
+
+HERE = os.path.dirname(os.path.realpath(__file__))
+FILE = os.path.join(HERE, "settings.json")
+DOMAINS = {
+    # domain: (key prefixes to keep, keys to skip)
+    "com.superlogical.rex": (
+        ("Workspace.",),
+        {"Workspace.lastFocusedSession", "Workspace.programActivitySeen"},
+    ),
+    "vc.gd1.rex-hotkey": (("",), set()),
+}
+
+
+def export(domain):
+    # Export to a file (binary plist): `defaults export ... -` can emit invalid XML.
+    with tempfile.NamedTemporaryFile(suffix=".plist") as tmp:
+        out = subprocess.run(["defaults", "export", domain, tmp.name], capture_output=True)
+        return plistlib.load(open(tmp.name, "rb")) if out.returncode == 0 else {}
+
+
+def save():
+    data = {}
+    for domain, (prefixes, skip) in DOMAINS.items():
+        prefs = {}
+        for k, v in sorted(export(domain).items()):
+            if not k.startswith(prefixes) or k in skip:
+                continue
+            if isinstance(v, bytes):  # e.g. customThemes: JSON stored as data
+                v = {"$json": json.loads(v)}
+            prefs[k] = v
+        if prefs:
+            data[domain] = prefs
+    with open(FILE, "w") as f:
+        json.dump(data, f, indent=2, sort_keys=True)
+        f.write("\n")
+    print(f"saved {sum(map(len, data.values()))} settings to {FILE}")
+
+
+def write(domain, key, v):
+    if isinstance(v, dict) and "$json" in v:
+        raw = json.dumps(v["$json"], separators=(",", ":")).encode()
+        args = ["-data", raw.hex()]
+    elif isinstance(v, bool):
+        args = ["-bool", "true" if v else "false"]
+    elif isinstance(v, int):
+        args = ["-int", str(v)]
+    elif isinstance(v, float):
+        args = ["-float", repr(v)]
+    elif isinstance(v, str):
+        args = ["-string", v]
+    else:
+        sys.exit(f"unsupported value for {domain} {key}: {v!r}")
+    subprocess.run(["defaults", "write", domain, key, *args], check=True)
+
+
+def load(force):
+    running = subprocess.run(["pgrep", "-xq", "Rex"]).returncode == 0
+    if running and not force:
+        sys.exit("Rex is running and would overwrite these on quit; quit it first (or pass --force)")
+    with open(FILE) as f:
+        data = json.load(f)
+    for domain, prefs in data.items():
+        for k, v in prefs.items():
+            write(domain, k, v)
+    print(f"loaded {sum(map(len, data.values()))} settings from {FILE}")
+
+
+if __name__ == "__main__":
+    cmd = sys.argv[1] if len(sys.argv) > 1 else ""
+    if cmd == "save":
+        save()
+    elif cmd == "load":
+        load("--force" in sys.argv)
+    else:
+        sys.exit(__doc__.strip())

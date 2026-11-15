@@ -25,7 +25,7 @@ To change it later: `rm ~/.gitconfig.user && ~/.yadr/install.sh`.
 | `git/gitconfig`, `git/gitignore` | `~/.gitconfig`, `~/.gitignore` | identity comes from `~/.gitconfig.user` |
 | `neovim/` | `~/.config/nvim` | LazyVim + Teerb theme + claudecode.nvim (`<leader>ac`) |
 | `ghostty/` | `~/.config/ghostty` | |
-| `rex/` | `~/.config/rex` | Rex multiplexer: agent actions + keys (below) |
+| `rex/` | `~/.config/rex` | Rex: agent actions + keys; app settings via `rex/settings` (below) |
 | `vimify/` | `~/.inputrc`, `~/.editrc` | vi mode for readline/libedit REPLs |
 
 Machine-local, untracked: `~/.zsh.after/*.zsh`, `~/.secrets` (sourced if present), `~/.gitconfig.user`.
@@ -62,3 +62,15 @@ Defined in `rex/init.lua`; also in the command palette under **Agents**.
 
 After editing: `rex config check && rex config reload`. Try an action from the
 file before reloading with `rex do rex/init.lua --action <name>`.
+
+### Rex app settings
+
+Theme (incl. custom themes), fonts, sidebar, tab and pane options are set in the
+app and stored in macOS preferences, so they're synced by copy instead of symlink:
+
+```sh
+rex/settings save    # after changing settings in the app; then commit rex/settings.json
+rex/settings load    # apply the repo's settings (quit Rex first)
+```
+
+`install.sh` loads them automatically only on a machine with no Rex settings yet.

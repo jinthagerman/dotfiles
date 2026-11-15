@@ -31,6 +31,14 @@ link neovim                        "$HOME/.config/nvim"
 link ghostty                       "$HOME/.config/ghostty"
 link rex                           "$HOME/.config/rex"
 
+# Rex app settings (theme, fonts, sidebar) live in macOS prefs, not ~/.config.
+# Only seed them on a machine that has none yet, so re-runs keep local tweaks.
+if defaults read com.superlogical.rex Workspace.appearance >/dev/null 2>&1; then
+  echo "rex   app settings already present; to apply the repo's: rex/settings load"
+else
+  "$YADR/rex/settings" load || echo "warn  rex settings not loaded; quit Rex and run: rex/settings load"
+fi
+
 # Per-machine git identity (not tracked, so work and personal machines differ).
 # To change it later: rm ~/.gitconfig.user && ./install.sh
 GITUSER="$HOME/.gitconfig.user"
